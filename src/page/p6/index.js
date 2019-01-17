@@ -1,7 +1,7 @@
-import { $container, $tweenManager, $easing, $spine } from '../../utils/pixi';
-import { Graphics, Sprite } from '../../utils';
+import { $container } from '../../utils/pixi';
+import { Sprite } from '../../utils';
 import dialog from '../common/dialog';
-import waterAction from '../common/waterAction';
+import circleNext from '../common/cricleNext';
 
 export default class P6 {
   constructor(res) {
@@ -69,14 +69,16 @@ export default class P6 {
   }
 
   action() {
+    const self = this;
     return () => new Promise((r, j) => {
-      console.log('p6 action');
       APP.stage.addChild(this.app);
       this.render();
-      waterAction(this.elements.yeye);
       const { bless } = this.elements;
+      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
       bless.interactive = true;
-      bless.on('tap', () => this.next(r));
+      bless.on('tap', function () {
+        self.next(r, this);
+      });
     });
   }
 

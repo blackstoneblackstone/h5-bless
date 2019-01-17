@@ -1,105 +1,116 @@
-import {$container, $tweenManager, $easing, $spine, $displacementFilter, $rope, $point} from "../../utils/pixi"
-import {Sprite} from "../../utils"
-import starAction from "../common/starAction";
-import displacement from "../common/displacement";
+import {
+  $container
+} from '../../utils/pixi';
+import { Sprite } from '../../utils';
+import circleNext from '../common/cricleNext';
+import waterAction from '../common/waterAction';
 
 // 国贸
 export default class P0 {
-    constructor(res) {
-        this.app = new $container()
-        this.elements = {}
-        this.res = res
-        this.init()
-    }
+  constructor(res) {
+    this.app = new $container();
+    this.elements = {};
+    this.res = res;
+    this.init();
+  }
 
-    init() {
-        l('p0 start .....')
-        this.initEl()
-        this.mount()
-        return this.app
-    }
+  init() {
+    l('p0 start .....');
+    this.initEl();
+    this.mount();
+    return this.app;
+  }
 
-    initEl() {
-        const {p0_bg, p0_flower, p0_glass, p0_bless, p0_women, p0_man, p0_displacement} = this.res
-        this.elements = {
-            bg: Sprite(p0_bg),
-            man: Sprite(p0_man),
-            women: new $spine(p0_women.spineData),
-            glass: Sprite(p0_glass),
-            flower: Sprite(p0_flower),
-            bless: Sprite(p0_bless),
-            // displacement: Sprite(p0_displacement),
-        }
-        const {women, man, bless} = this.elements
-        women.skeleton.setToSetupPose()
-        women.update(0)
-        women.autoUpdate = false
-        women.x = 250
-        women.y = APP_HEIGHT - 420
+  initEl() {
+    const { p0_bg, p0_bless, p0_1, p0_2, p0_3, p0_4, p0_5, p0_6, p0_7, p0_8 } = this.res;
+    this.elements = {
+      bg: Sprite(p0_bg),
+      bless: Sprite(p0_bless),
+      l1: Sprite(p0_1),
+      l2: Sprite(p0_2),
+      l3: Sprite(p0_3),
+      l4: Sprite(p0_4),
+      l5: Sprite(p0_5),
+      l6: Sprite(p0_6),
+      l7: Sprite(p0_7),
+      l8: Sprite(p0_8)
+    };
+    const { bless, bg, l1, l2, l3, l4, l5, l6, l7, l8 } = this.elements;
+    bless.x = 180;
+    bless.y = 599;
+    bg.width = 480;
+    bg.height = 854;
 
-        bless.x = 200
-        bless.y = 26
-        bless.zOrder = 100
+    l1.x = 420;
+    l1.y = 132;
 
-        man.x = 34
-        man.y = 135
+    l2.x = 126;
+    l2.y = 547;
 
-    }
+    l3.x = 311;
+    l3.y = 534;
 
-    manAction() {
-        const {displacement, glass} = this.elements
-        displacement.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-        const displacementFilter = new $displacementFilter(displacement);
-        displacementFilter.padding = 10;
-        displacement.position = glass.position;
-        glass.filters = [displacementFilter];
-        displacementFilter.scale.x = 30;
-        displacementFilter.scale.y = 60;
-    }
+    l4.x = 173;
+    l4.y = 399;
 
-    mount() {
-        Object.values(this.elements).map((element) => {
-            this.app.addChild(element)
-        })
-    }
+    l5.x = 61;
+    l5.y = 244;
 
-    action() {
-        APP.stage.addChild(this.app)
-        const {women, bless} = this.elements
-        women.state.setAnimation(0, 'hand', true)
+    l6.x = 279;
+    l6.y = 107;
 
-        bless.interactive = true
-        bless.on("tap", () => this.next())
-        this.render()
-        starAction()
-        // displacement()
-    }
+    l7.x = 310;
+    l7.y = 187;
 
-    next() {
-        var points = []
-        var count = 0
-        var ropeLength = 918 / 20
-        for (var i = 0; i < 20; i++) {
-            points.push(new $point(i * ropeLength, 0))
-        }
-        var strip = new $rope(this.elements.bless, points)
-        APP.ticker.add(function () {
-            count += 0.1;
-            for (var i = 0; i < points.length; i++) {
-                points[i].y = Math.sin((i * 0.5) + count) * 30
-                points[i].x = i * ropeLength + Math.cos((i * 0.3) + count) * 20
-            }
+    l8.x = 72;
+    l8.y = 53;
+  }
+
+  mount() {
+    Object.values(this.elements).map((element) => {
+      this.app.addChild(element);
+    });
+  }
+
+  action() {
+    const self = this;
+    return new Promise((r, j) => {
+      console.log('p0 action');
+      const { bless, l1, l2, l3, l4, l5, l6, l7, l8 } = this.elements;
+
+      APP.stage.addChild(this.app);
+      TweenMax.to(l1, 0.5, { alpha: 0.1, repeat: -1 });
+      TweenMax.to(l2, 0.5, { alpha: 0.1, repeat: -1 }, 0.1);
+      TweenMax.to(l3, 0.5, { alpha: 0.1, repeat: -1 }, 0.2);
+      TweenMax.to(l4, 0.5, { alpha: 0.1, repeat: -1 }, 0.3);
+      TweenMax.to(l5, 0.5, { alpha: 0.1, repeat: -1 }, 0.4);
+      TweenMax.to(l6, 0.5, { alpha: 0.1, repeat: -1 });
+      TweenMax.to(l7, 0.5, { alpha: 0.1, repeat: -1 }, 0.5);
+      TweenMax.to(l8, 0.5, { alpha: 0.1, repeat: -1 }, 0.6);
+
+      TweenMax.fromTo(this.app, 0.8, {
+          alpha: 0
+        },
+        {
+          alpha: 1,
+          ease: Power1.easeIn
         });
-    }
+      this.render();
+      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
+      bless.interactive = true;
+      bless.on('tap', function (e) {
+          self.next(r, this);
+        }
+      );
+    });
+  }
 
-    render() {
-        const {women, displacement} = this.elements
-        APP.ticker.add(function (delta) {
-            women.update(0.01666666666667)
-            // displacement.x++
-            // if (displacement.x > displacement.width) {
-            //             //     displacement.x = 0
-            //             // }
-        })
-    }
+  next(r, self) {
+    console.log('p0 next');
+    waterAction(r, self, this.app);
+  }
+
+  render() {
+
+  }
 }

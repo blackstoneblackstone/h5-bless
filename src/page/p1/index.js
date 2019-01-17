@@ -1,7 +1,8 @@
-import { $container, $tweenManager, $easing, $spine, $displacementFilter, $rope, $point } from '../../utils/pixi';
+import { $container, $spine, $displacementFilter } from '../../utils/pixi';
 import { Sprite } from '../../utils';
-import starAction from '../common/starAction';
-import displacement from '../common/displacement';
+import { star } from '../common/starAction';
+import waterAction from '../common/waterAction';
+import circleNext from '../common/cricleNext';
 
 // 大扫除
 export default class P1 {
@@ -20,17 +21,14 @@ export default class P1 {
   }
 
   initEl() {
-    const { p1_bg, p1_flower, p1_glass, p1_bless, p1_women, p1_man, p1_displacement } = this.res;
+    const { p1_bg, p1_glass, p1_bless, p1_women } = this.res;
     this.elements = {
       bg: Sprite(p1_bg),
-      man: Sprite(p1_man),
       women: new $spine(p1_women.spineData),
       glass: Sprite(p1_glass),
-      flower: Sprite(p1_flower),
-      bless: Sprite(p1_bless),
-      displacement: Sprite(p1_displacement),
+      bless: Sprite(p1_bless)
     };
-    const { women, man, bless } = this.elements;
+    const { women, bless, glass } = this.elements;
 
     women.skeleton.setToSetupPose();
     women.update(0);
@@ -42,21 +40,20 @@ export default class P1 {
     bless.y = 26;
     bless.zOrder = 100;
 
-    man.x = 34;
-    man.y = 135;
-
+    glass.width = APP_WIDTH;
+    glass.height = APP_HEIGHT;
   }
 
-  // manAction() {
-  //   const { displacement, glass } = this.elements;
-  //   displacement.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-  //   const displacementFilter = new $displacementFilter(displacement);
-  //   displacementFilter.padding = 10;
-  //   displacement.position = glass.position;
-  //   glass.filters = [displacementFilter];
-  //   displacementFilter.scale.x = 2;
-  //   displacementFilter.scale.y = 2;
-  // }
+  manAction() {
+    const { displacement, glass } = this.elements;
+    displacement.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    const displacementFilter = new $displacementFilter(displacement);
+    displacementFilter.padding = 10;
+    displacement.position = glass.position;
+    glass.filters = [displacementFilter];
+    displacementFilter.scale.x = 30;
+    displacementFilter.scale.y = 60;
+  }
 
   mount() {
     Object.values(this.elements).map((element) => {
@@ -65,36 +62,33 @@ export default class P1 {
   }
 
   action() {
-    return new Promise((r, j) => {
+    const self = this;
+    return () => new Promise((r, j) => {
       console.log('p1 action');
+
       APP.stage.addChild(this.app);
       const { women, bless } = this.elements;
       women.state.setAnimation(0, 'hand', true);
-
       this.render();
-      starAction(this.app);
+      star(this.app);
 
-      // this.manAction();
-
+      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
       bless.interactive = true;
-      bless.on('tap', () => this.next(r));
+      bless.on('tap', function () {
+        self.next(r, this);
+      });
     });
   }
 
-  next(r) {
+  next(r, self) {
     console.log('p1 next');
-    APP.stage.removeChild(this.app);
-    r(1);
+    waterAction(r, self, this.app);
   }
 
   render() {
-    const { women, displacement } = this.elements;
+    const { women } = this.elements;
     APP.ticker.add(function (delta) {
       women.update(0.01666666666667);
-      displacement.x+=20;
-      if (displacement.x > displacement.width) {
-        displacement.x = 0;
-      }
     });
   }
 }

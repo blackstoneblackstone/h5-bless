@@ -17,7 +17,6 @@
     "json-loader": "^0.5.7",
     "pixi-particles": "^3.1.0",
     "pixi-spine": "^1.5.19",
-    "pixi-tween": "^0.2.0",
     "pixi.js": "4.8.4",
     "style-loader": "^0.23.1",
     "webpack": "4.28.3",
