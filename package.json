@@ -1,44 +1,33 @@
 {
-	"name": "sint-example",
-	"version": "0.0.1",
-	"description": "sint.js example",
-	"author": "WaterTian",
-	"license": "MIT",
-	"scripts": {
-		"dev": "webpack-dev-server --config webpack.config.js",
-		"build": "webpack --config webpack.build.config.js"
-	},
-	"homepage": "https://watertian.github.io/sint.js/",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/WaterTian/sint.js.git"
-	},
-	"devDependencies": {
-		"babel-cli": "^6.26.0",
-		"babel-core": "^6.26.3",
-		"babel-eslint": "^8.2.6",
-		"babel-loader": "^7.1.5",
-		"babel-preset-env": "^1.7.0",
-		"clean-webpack-plugin": "^0.1.19",
-		"eslint": "^5.2.0",
-		"eslint-loader": "^2.1.0",
-		"glslify-loader": "^1.0.2",
-		"path": "^0.12.7",
-		"raw-loader": "^0.5.1",
-		"rimraf": "^2.6.2",
-		"uglifyjs-webpack-plugin": "^2.0.1",
-		"webpack": "^4.23.1",
-		"webpack-cli": "^3.1.2",
-		"webpack-dev-server": "^3.1.10",
-		"webpack-glsl-loader": "^1.0.1"
-	},
-	"dependencies": {
-		"sint.js": "0.0.10",
-		"vconsole": "^3.2.0"
-	},
-	"babel": {
-		"presets": [
-			"env"
-		]
-	}
+  "name": "pj-happy",
+  "version": "1.0.0",
+  "description": "春节庆祝h5",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode development --config ./webpack/webpack.config.js",
+    "build": "webpack --mode production --config ./webpack/webpack.pro.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "json-loader": "^0.5.7",
+    "pixi-particles": "^3.1.0",
+    "pixi-spine": "^1.5.19",
+    "pixi-tween": "^0.2.0",
+    "pixi.js": "4.8.4",
+    "style-loader": "^0.23.1",
+    "webpack": "4.28.3",
+    "webpack-cli": "3.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.5",
+    "http-server": "^0.11.1",
+    "webpack-dev-server": "^3.1.14"
+  }
 }

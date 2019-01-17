@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=480, initial-scale=1, maximum-scale=1">
+    <title>春节送福</title>
+    <script>
+        (function () {
+            if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var phoneScale = parseInt(window.screen.width) / 480;
+                    document.write('<meta name="viewport" content="width=480, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=480, target-densitydpi=device-dpi">');
+                }
+            } else {
+                document.write('<meta name="viewport" content="width=480, user-scalable=no, target-densitydpi=device-dpi">');
+            }
+        })()
+        window.l = function (message) {
+            console.info(message)
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
