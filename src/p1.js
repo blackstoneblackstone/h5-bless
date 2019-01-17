@@ -54,9 +54,7 @@ export default class P1 {
 
         Object.values(elements).map((element) => {
             this.container.addChild(element);
-            console.log( SINT.Tween.fromTo)
-
-            SINT.Tween.to(element, 0.5, {alpha: 0.1, repeat: -1});
+            // SINT.Tween.to(element, 0.5, {alpha: 0.1, repeat: -1});
         });
 
         bless.anchor.set(0.5);
