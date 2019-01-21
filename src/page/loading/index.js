@@ -52,12 +52,12 @@ import p6_light from '@static/p6/light.png';
 import p6_mama from '@static/p6/mama.png';
 import p6_pao from '@static/p6/pao.png';
 
-
 import p7_b1 from '@static/p7/up.png';
 import p7_b2 from '@static/p7/change.png';
 import p7_b3 from '@static/p7/get.png';
 import p7_text from '@static/p7/text.png';
 import { star } from '../common/starAction';
+import say from '../common/say';
 
 export default class Loading {
 
@@ -147,7 +147,6 @@ export default class Loading {
 
         .load((loader, res) => {
           star(APP.stage);
-
           let next = false;
 
           this.app.position.x = 240;

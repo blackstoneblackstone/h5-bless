@@ -1,5 +1,5 @@
 import Loading from './page/loading';
-import { $application, $sound } from './utils/pixi';
+import { $application } from './utils/pixi';
 import './css/app.css';
 import P0 from './page/p0';
 import P1 from './page/p1';
@@ -9,6 +9,8 @@ import P4 from './page/p4';
 import P5 from './page/p5';
 import P6 from './page/p6';
 import P7 from './page/p7';
+import wxUtil from './utils/wxUtil';
+import say from './page/common/say';
 
 const radio = document.body.offsetWidth / 480;
 const screenWidth = 480;
@@ -57,5 +59,8 @@ function loaded({ loader, res }) {
 }
 
 APP.start();
+
+say.bgPlay();
+wxUtil();
 
 

@@ -14,22 +14,18 @@ export default function (app) {
   con.play();
   let flag = false;
   app.addChild(con);
-  const music = document.getElementById('music');
-  music.volume = 0.2;
-  music.onload = () => {
-    music.play();
-  };
+
   con.interactive = true;
   con.on('tap', function () {
     if (flag) {
-      music.play();
       con.play();
       say.play();
+      say.bgPlay();
       flag = false;
     } else {
-      music.pause();
       con.stop();
       say.pause();
+      say.bgPause();
       flag = true;
     }
   });

@@ -1,19 +1,32 @@
-import bgSound from '@static/music/bg.mp3';
+import pageSound from '@static/music/bg.mp3';
+import bgSound from '@static/music/bless-music.mp3';
+
 import { $sound } from '../../utils/pixi';
 
 const sprites = {
-  p6: { start: 0, end: 34.5 },// 新年好 事事顺利
-  p0: { start: 34.5, end: 38.5 }, // 不买买对得起哪个
-  p1: { start: 38.5, end: 45.3 }, // 擦水
-  p2: { start: 45.3, end: 51.3 }, // 春联
-  p3: { start: 51.3, end: 56 }, // 爆竹
-  p4: { start: 56, end: 62 }, // 红包
-  p5: { start: 62, end: 72.5 } // 打麻将
+  p0: { start: 0, end: 3 }, // 不买买对得起哪个
+  p1: { start: 3, end: 8.1 }, // 擦水
+  p2: { start: 8.1, end: 14 }, // 春联
+  p3: { start: 14, end: 18.5 }, // 爆竹
+  p4: { start: 18.5, end: 25 }, // 红包
+  p5: { start: 25, end: 35 }, // 打麻将
+  p6: { start: 35, end: 53 }// 新年好 事事顺利
 };
 
 const sound = $sound.from({
-  'url': bgSound,
+  'url': pageSound,
   'sprites': sprites
+});
+
+var soundFlag = false;
+const soundBg = $sound.from({
+  url: bgSound,
+  volume: 0.1,
+  preload: true,
+  loop: true,
+  loaded: function (err, sound) {
+    soundFlag = true;
+  }
 });
 
 export default {
@@ -29,5 +42,13 @@ export default {
   },
   pause() {
     sound.pause();
+  },
+  bgPlay() {
+    if (soundFlag) {
+      soundBg.play();
+    }
+  },
+  bgPause() {
+    soundBg.pause();
   }
 };

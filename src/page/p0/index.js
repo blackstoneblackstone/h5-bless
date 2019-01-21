@@ -43,34 +43,32 @@ export default class P0 {
     bless.x = 180;
     bless.y = 587;
 
-    bg.y = 100;
-    bg.x = 33;
-    bg.width = 414;
-    bg.height = 714;
+    bg.width = 480;
+    bg.height = 854;
 
-    l1.x = 400;
-    l1.y = 180;
+    l1.x = 400 - 33;
+    l1.y = 80;
 
-    l2.x = 140;
-    l2.y = 543;
+    l2.x = 140 - 33;
+    l2.y = 443;
 
-    l3.x = 302;
-    l3.y = 533;
+    l3.x = 302 - 33;
+    l3.y = 433;
 
-    l4.x = 180;
-    l4.y = 414;
+    l4.x = 180 - 33;
+    l4.y = 314;
 
-    l5.x = 85;
-    l5.y = 279;
+    l5.x = 85 - 33;
+    l5.y = 179;
 
-    l6.x = 273;
-    l6.y = 162;
+    l6.x = 273 - 33;
+    l6.y = 62;
 
-    l7.x = 300;
-    l7.y = 230;
+    l7.x = 300 - 33;
+    l7.y = 130;
 
-    l8.x = 92;
-    l8.y = 114;
+    l8.x = 92 - 33;
+    l8.y = 14;
 
     t1.x = 61;
     t1.y = 10;
@@ -122,7 +120,7 @@ export default class P0 {
           self.next(r, this);
         }
       );
-      say.play('p0')
+      say.play('p0');
     });
   }
 

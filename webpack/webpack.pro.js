@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -8,9 +9,10 @@ module.exports = {
   },
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].js',
-    chunkFilename: '[name]-[chunkhash].bundle.js'
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[hash].bundle.js'
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
@@ -49,7 +51,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new CopyWebpackPlugin([{ from: 'MP_verify_fdnVlwV4XvwRqAtj.txt', to: 'MP_verify_fdnVlwV4XvwRqAtj.txt' }])
   ],
   resolve: {
     alias: {
