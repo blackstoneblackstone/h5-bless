@@ -1,6 +1,7 @@
 import { $animatedSprite, $loadingImg, $sprite } from '../../utils/pixi';
 import open1 from '@static/common/open1.png';
 import open2 from '@static/common/open2.png';
+import say from './say';
 
 export default function (app) {
   const o1 = $loadingImg(open1);
@@ -13,15 +14,22 @@ export default function (app) {
   con.play();
   let flag = false;
   app.addChild(con);
+  const music = document.getElementById('music');
+  music.volume = 0.2;
+  music.onload = () => {
+    music.play();
+  };
+  con.interactive = true;
   con.on('tap', function () {
-    console.log('music');
     if (flag) {
-      document.getElementById('music').play();
+      music.play();
       con.play();
+      say.play();
       flag = false;
     } else {
-      document.getElementById('music').pause();
+      music.pause();
       con.stop();
+      say.pause();
       flag = true;
     }
   });

@@ -1,8 +1,8 @@
-import { $container, $spine } from '../../utils/pixi';
+import { $container } from '../../utils/pixi';
 import { Sprite } from '../../utils';
-import { fly } from '../common/starAction';
 import waterAction from '../common/waterAction';
 import circleNext from '../common/cricleNext';
+import say from '../common/say';
 
 export default class P2 {
   constructor(res) {
@@ -27,19 +27,27 @@ export default class P2 {
 // .add("p2_desk", p2_desk)
 // .add("p2_girl", p2_girl)
   initEl() {
-    const { p2_bg, p2_bless, p2_boy } = this.res;
+    const { p2_bg, p2_boy, p2_t1, p2_t2 } = this.res;
     this.elements = {
       bg: Sprite(p2_bg),
-      bless: Sprite(p2_bless),
-      boy: Sprite(p2_boy)
+      boy: Sprite(p2_boy),
+      t1: Sprite(p2_t1),
+      t2: Sprite(p2_t2)
     };
-    const { bless, boy } = this.elements;
+    const { boy, bg, t1, t2 } = this.elements;
 
-    bless.x = 244;
-    bless.y = 65;
+    bg.y = 90;
+    bg.width = 480;
 
-    boy.x = 168;
-    boy.y = 495;
+    boy.x = 186;
+    boy.y = 508;
+
+    t1.x = 25;
+    t1.y = 20;
+
+    t2.x = 46;
+    t2.y = 63;
+
   }
 
   mount() {
@@ -53,13 +61,15 @@ export default class P2 {
     return () => new Promise((r, j) => {
       APP.stage.addChild(this.app);
       this.render();
-      const { bless } = this.elements;
-      bless.interactive = true;
-      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
-
-      bless.on('tap', function () {
+      const { t1, t2 } = this.elements;
+      TweenMax.from(t1, 1, { alpha: 0, y: -300 });
+      TweenMax.from(t2, 1, { alpha: 0, x: -300, delay: 0.5 });
+      const nextBtn = circleNext(270, 210, this.app);
+      nextBtn.interactive = true;
+      nextBtn.on('tap', function () {
         self.next(r, this);
       });
+      say.play('p2')
     });
   }
 

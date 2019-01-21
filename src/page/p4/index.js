@@ -1,7 +1,8 @@
-import { $container, $spine } from '../../utils/pixi';
+import { $container } from '../../utils/pixi';
 import { Sprite } from '../../utils';
 import waterAction from '../common/waterAction';
 import circleNext from '../common/cricleNext';
+import say from '../common/say';
 // 拜年
 export default class P4 {
   constructor(res) {
@@ -19,50 +20,35 @@ export default class P4 {
   }
 
   initEl() {
-    const { p4_bg, p4_bless, p4_baby, p4_desk, p4_children, p4_grandpa, p4_hi, p4_house, p4_light, p4_photo, p4_wall } = this.res;
+    const { p4_bg, p4_l1, p4_people, p4_t1, p4_t2 } = this.res;
     this.elements = {
       bg: Sprite(p4_bg),
-      house: Sprite(p4_house),
-      photo: Sprite(p4_photo),
-      wall: Sprite(p4_wall),
-      desk: Sprite(p4_desk),
-      children: Sprite(p4_children),
-      grandpa: Sprite(p4_grandpa),
-      hi: Sprite(p4_hi),
-      light: Sprite(p4_light),
-      baby: Sprite(p4_baby),
-      bless: Sprite(p4_bless)
+      l1: Sprite(p4_l1),
+      l2: Sprite(p4_l1),
+      people: Sprite(p4_people),
+      t1: Sprite(p4_t1),
+      t2: Sprite(p4_t2)
     };
-    const { bg, bless, baby, desk, children, grandpa, hi, house, light, photo, wall } = this.elements;
+    const { bg, l1, l2, people, t1, t2 } = this.elements;
 
-    bg.y = 147;
+    bg.y = 65;
 
-    wall.x = -15;
-    wall.y = -9;
+    l1.x = 40;
+    l1.y = 115;
+    l1.anchor.set(0.5, 0);
 
-    photo.x = 135;
-    photo.y = 103;
+    l2.x = 430;
+    l2.y = 115;
+    l2.anchor.set(0.5, 0);
 
-    bless.x = 8;
-    bless.y = 41;
+    people.x = 287;
+    people.y = 235;
 
-    baby.x = 127;
-    baby.y = 605;
+    t1.x = 20;
+    t1.y = 17;
 
-    children.x = 297;
-    children.y = 128;
-
-    desk.x = 0;
-    desk.y = 411;
-
-    grandpa.x = 0;
-    grandpa.y = 241;
-
-    hi.x = 264;
-    hi.y = 74;
-
-    light.x = 410;
-    light.y = 13;
+    t2.x = 150;
+    t2.y = 60;
 
   }
 
@@ -74,15 +60,22 @@ export default class P4 {
 
   action() {
     const self = this;
+
     return () => new Promise((r, j) => {
       APP.stage.addChild(this.app);
       this.render();
-      const { bless } = this.elements;
-      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
-      bless.interactive = true;
-      bless.on('tap', function () {
+      const { t1, t2, people, l1, l2 } = this.elements;
+      TweenMax.from(t1, 1, { alpha: 0, x: -300 });
+      TweenMax.from(t2, 1, { alpha: 0, y: -300, delay: 0.5 });
+      TweenMax.from(people, 1, { alpha: 0, x: 600 });
+      TweenMax.fromTo(l1, 3.5, { rotation: -0.5 }, { rotation: 0.5, repeat: -1, yoyo: true, ease: Power1.easeInOut });
+      TweenMax.fromTo(l2, 3, { rotation: 0.5 }, { rotation: -0.5, repeat: -1, yoyo: true, ease: Power1.easeInOut });
+      const con = circleNext(95, 220, this.app);
+      con.interactive = true;
+      con.on('tap', function () {
         self.next(r, this);
       });
+      say.play('p4')
     });
   }
 

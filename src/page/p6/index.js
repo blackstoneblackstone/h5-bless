@@ -2,6 +2,8 @@ import { $container } from '../../utils/pixi';
 import { Sprite } from '../../utils';
 import dialog from '../common/dialog';
 import circleNext from '../common/cricleNext';
+import waterAction from '../common/waterAction';
+import say from '../common/say';
 
 export default class P6 {
   constructor(res) {
@@ -19,47 +21,37 @@ export default class P6 {
   }
 
   initEl() {
-    const { p6_bg, p6_bless, p6_boy, p6_desk, p6_dog, p6_fish, p6_hand, p6_hua, p6_hua1, p6_light, p6_mama, p6_yeye } = this.res;
+    const { p6_bg, p6_t1, p6_t2, p6_light, p6_mama, p6_pao } = this.res;
     this.elements = {
       bg: Sprite(p6_bg),
-      han: Sprite(p6_hand),
-      hua: Sprite(p6_hua),
-      hua1: Sprite(p6_hua1),
+      t1: Sprite(p6_t1),
+      t2: Sprite(p6_t2),
       light: Sprite(p6_light),
       mama: Sprite(p6_mama),
-      yeye: Sprite(p6_yeye),
-      desk: Sprite(p6_desk),
-      boy: Sprite(p6_boy),
-      dog: Sprite(p6_dog),
-      fish: Sprite(p6_fish),
-      bless: Sprite(p6_bless)
+      pao: Sprite(p6_pao)
     };
-    const { bg, bless, boy, desk, dog, fish, hand, hua, hua1, light, mama, yeye } = this.elements;
+    const { bg, t1, t2, light, mama, pao } = this.elements;
 
-    bless.x = 150;
-    bless.y = 121;
+    bg.x = 13;
+    bg.y = 112;
 
-    fish.x = 203;
-    fish.y = 470;
+    t1.x = 27;
+    t1.y = 17;
 
-    boy.x = -5;
-    boy.y = 626;
+    t2.x = 70;
+    t2.y = 60;
 
-    desk.x = 0;
-    desk.y = 516;
+    light.x = 24;
+    light.y = 103;
 
-    dog.x = 201;
-    dog.y = 767;
+    mama.x = 209;
+    mama.y = 467;
 
-    light.x = -5;
-    light.y = -9;
-
-    mama.x = 4;
-    mama.y = 287;
-
-    yeye.x = 208;
-    yeye.y = 317;
-
+    pao.anchor.set(1, 1);
+    pao.x = 190 + 156;
+    pao.y = 410 + 111;
+    pao.scale.x = 0;
+    pao.scale.y = 0;
   }
 
   mount() {
@@ -70,29 +62,56 @@ export default class P6 {
 
   action() {
     const self = this;
+
     return () => new Promise((r, j) => {
       APP.stage.addChild(this.app);
       this.render();
-      const { bless } = this.elements;
-      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
-      bless.interactive = true;
-      bless.on('tap', function () {
+      const { t1, t2, mama, pao } = this.elements;
+      TweenMax.from(t1, 1, { alpha: 0, x: -300 });
+      TweenMax.from(t2, 1, { alpha: 0, x: 600, delay: 0.5 });
+      TweenMax.from(mama, 1, {
+        alpha: 0, x: 600, delay: 0.5, onComplete: () => {
+          TweenMax.to(pao.scale, 0.3, {
+            x: 1, y: 1, ease: Power1.easeOut, onComplete: () => {
+              TweenMax.from(pao, 0.8, {
+                alpha: 0.2, repeat: -1, yoyo: true
+              });
+            }
+          });
+        }
+      });
+
+      pao.interactive = true;
+      let flag = true;
+      let time = undefined;
+      pao.on('tap', function () {
+        if (flag) {
+          dialog.show();
+        }
+        flag = false;
+        if (!time) {
+          time = setTimeout(() => {
+            flag = true;
+            clearTimeout(time);
+            time = undefined;
+          }, 1500);
+        }
+      });
+      const con = circleNext(185, 220, this.app);
+      con.interactive = true;
+      con.on('tap', function () {
         self.next(r, this);
       });
+      say.play('p6');
     });
   }
 
-  next(r) {
-    dialog.show();
-
-    // APP.stage.removeChild(this.app)
-    // r()
+  next(r, self) {
+    console.log('p6 next');
+    waterAction(r, self, this.app);
   }
 
   render() {
 
-    APP.ticker.add(function (delta) {
-
-    });
   }
 }

@@ -2,6 +2,7 @@ import { $container, $spine } from '../../utils/pixi';
 import { Sprite } from '../../utils';
 import waterAction from '../common/waterAction';
 import circleNext from '../common/cricleNext';
+import say from '../common/say';
 
 export default class P5 {
   constructor(res) {
@@ -19,28 +20,20 @@ export default class P5 {
   }
 
   initEl() {
-    const { p5_bg, p5_bless, p5_lantern, p5_little_girl, p5_red_girl, p5_uncle } = this.res;
+    const { p5_bg, p5_t1, p5_t2 } = this.res;
     this.elements = {
       bg: Sprite(p5_bg),
-      lantern: Sprite(p5_lantern),
-      redGirl: Sprite(p5_red_girl),
-      uncle: Sprite(p5_uncle),
-      littleGirl: Sprite(p5_little_girl),
-      bless: Sprite(p5_bless)
+      t1: Sprite(p5_t1),
+      t2: Sprite(p5_t2)
     };
-    const { littleGirl, redGirl, uncle, bless } = this.elements;
+    const { bg, t1, t2 } = this.elements;
+    bg.y = 90;
 
-    uncle.x = 49;
-    uncle.y = 307;
+    t1.x = 62;
+    t1.y = 22;
 
-    littleGirl.x = 0;
-    littleGirl.y = 596;
-
-    redGirl.x = 0;
-    redGirl.y = 0;
-
-    bless.x = 320;
-    bless.y = 120;
+    t2.x = 194;
+    t2.y = 71;
 
   }
 
@@ -52,15 +45,19 @@ export default class P5 {
 
   action() {
     const self = this;
+
     return () => new Promise((r, j) => {
       APP.stage.addChild(this.app);
       this.render();
-      const { bless } = this.elements;
-      circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
-      bless.interactive = true;
-      bless.on('tap', function () {
+      const { t1, t2 } = this.elements;
+      TweenMax.from(t1, 1, { alpha: 0, x: -300 });
+      TweenMax.from(t2, 1, { alpha: 0, x: 600, delay: 0.5 });
+      const con = circleNext(345, 235, this.app);
+      con.interactive = true;
+      con.on('tap', function () {
         self.next(r, this);
       });
+      say.play('p5')
     });
   }
 

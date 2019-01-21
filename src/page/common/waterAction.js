@@ -1,5 +1,7 @@
 import { $displacementFilter, $loadingSprite } from '../../utils/pixi';
 import crystalizeImg from '@static/common/clouds.jpg';
+import say from './say';
+
 const displacement = $loadingSprite(crystalizeImg);
 
 export default (r, e, app) => {
@@ -28,8 +30,12 @@ export default (r, e, app) => {
     }
   });
 
+  TweenMax.to(app, 1, { alpha: 0.1 });
+
   baseTimeline
     .to(displacementFilter.scale, 1, { x: 10, y: 10, ease: Power1.easeOut })
-    .to(app, 0.5, { alpha: 0, ease: Power2.easeOut })
     .to(displacementFilter.scale, 1, { x: 1, y: 1, ease: Power2.easeOut });
+  // 关声音
+  say.pause();
+
 }

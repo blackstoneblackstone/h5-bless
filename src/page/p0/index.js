@@ -4,6 +4,7 @@ import {
 import { Sprite } from '../../utils';
 import circleNext from '../common/cricleNext';
 import waterAction from '../common/waterAction';
+import say from '../common/say';
 
 // 国贸
 export default class P0 {
@@ -22,7 +23,7 @@ export default class P0 {
   }
 
   initEl() {
-    const { p0_bg, p0_bless, p0_1, p0_2, p0_3, p0_4, p0_5, p0_6, p0_7, p0_8 } = this.res;
+    const { p0_bg, p0_bless, p0_1, p0_2, p0_3, p0_4, p0_5, p0_6, p0_7, p0_8, p0_t1, p0_t2, p0_t3 } = this.res;
     this.elements = {
       bg: Sprite(p0_bg),
       bless: Sprite(p0_bless),
@@ -33,37 +34,53 @@ export default class P0 {
       l5: Sprite(p0_5),
       l6: Sprite(p0_6),
       l7: Sprite(p0_7),
-      l8: Sprite(p0_8)
+      l8: Sprite(p0_8),
+      t1: Sprite(p0_t1),
+      t2: Sprite(p0_t2),
+      t3: Sprite(p0_t3)
     };
-    const { bless, bg, l1, l2, l3, l4, l5, l6, l7, l8 } = this.elements;
+    const { bless, bg, l1, l2, l3, l4, l5, l6, l7, l8, t1, t2, t3 } = this.elements;
     bless.x = 180;
-    bless.y = 599;
-    bg.width = 480;
-    bg.height = 854;
+    bless.y = 587;
 
-    l1.x = 420;
-    l1.y = 132;
+    bg.y = 100;
+    bg.x = 33;
+    bg.width = 414;
+    bg.height = 714;
 
-    l2.x = 126;
-    l2.y = 547;
+    l1.x = 400;
+    l1.y = 180;
 
-    l3.x = 311;
-    l3.y = 534;
+    l2.x = 140;
+    l2.y = 543;
 
-    l4.x = 173;
-    l4.y = 399;
+    l3.x = 302;
+    l3.y = 533;
 
-    l5.x = 61;
-    l5.y = 244;
+    l4.x = 180;
+    l4.y = 414;
 
-    l6.x = 279;
-    l6.y = 107;
+    l5.x = 85;
+    l5.y = 279;
 
-    l7.x = 310;
-    l7.y = 187;
+    l6.x = 273;
+    l6.y = 162;
 
-    l8.x = 72;
-    l8.y = 53;
+    l7.x = 300;
+    l7.y = 230;
+
+    l8.x = 92;
+    l8.y = 114;
+
+    t1.x = 61;
+    t1.y = 10;
+
+    t2.x = 150;
+    t2.y = 40;
+
+    t3.x = 118;
+    t3.y = 70;
+
   }
 
   mount() {
@@ -76,17 +93,17 @@ export default class P0 {
     const self = this;
     return new Promise((r, j) => {
       console.log('p0 action');
-      const { bless, l1, l2, l3, l4, l5, l6, l7, l8 } = this.elements;
+      const { bless, l1, l2, l3, l4, l5, l6, l7, l8, t1, t2, t3 } = this.elements;
 
       APP.stage.addChild(this.app);
       TweenMax.to(l1, 0.5, { alpha: 0.1, repeat: -1 });
-      TweenMax.to(l2, 0.5, { alpha: 0.1, repeat: -1 }, 0.1);
-      TweenMax.to(l3, 0.5, { alpha: 0.1, repeat: -1 }, 0.2);
-      TweenMax.to(l4, 0.5, { alpha: 0.1, repeat: -1 }, 0.3);
-      TweenMax.to(l5, 0.5, { alpha: 0.1, repeat: -1 }, 0.4);
+      TweenMax.to(l2, 0.5, { alpha: 0.1, repeat: -1, delay: 0.1 });
+      TweenMax.to(l3, 0.5, { alpha: 0.1, repeat: -1, delay: 0.2 });
+      TweenMax.to(l4, 0.5, { alpha: 0.1, repeat: -1, delay: 0.3 });
+      TweenMax.to(l5, 0.5, { alpha: 0.1, repeat: -1, delay: 0.4 });
       TweenMax.to(l6, 0.5, { alpha: 0.1, repeat: -1 });
-      TweenMax.to(l7, 0.5, { alpha: 0.1, repeat: -1 }, 0.5);
-      TweenMax.to(l8, 0.5, { alpha: 0.1, repeat: -1 }, 0.6);
+      TweenMax.to(l7, 0.5, { alpha: 0.1, repeat: -1, delay: 0.5 });
+      TweenMax.to(l8, 0.5, { alpha: 0.1, repeat: -1, delay: 0.6 });
 
       TweenMax.fromTo(this.app, 0.8, {
           alpha: 0
@@ -95,6 +112,9 @@ export default class P0 {
           alpha: 1,
           ease: Power1.easeIn
         });
+      TweenMax.from(t1, 1, { alpha: 0, x: -300, delay: 0.5 });
+      TweenMax.from(t2, 1, { alpha: 0, x: -300, delay: 1 });
+      TweenMax.from(t3, 1, { alpha: 0, x: -300, delay: 1.5 });
       this.render();
       circleNext(bless.x + bless.width / 2, bless.y + bless.height / 2, this.app);
       bless.interactive = true;
@@ -102,6 +122,7 @@ export default class P0 {
           self.next(r, this);
         }
       );
+      say.play('p0')
     });
   }
 

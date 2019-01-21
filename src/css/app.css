@@ -6,5 +6,16 @@ html, body, canvas {
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #ffffff;
+    background: linear-gradient(#c74840 40%, #fddccd 80%, #fddccd 100%);
+}
+
+.bottom {
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    height: 30px;
+    width: 130px;
+    transform: translateX(-50%);
+    background: url("../../static/common/bottom.png") no-repeat;
+    z-index: 2;
 }
