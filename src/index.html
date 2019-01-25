@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=480, initial-scale=1, maximum-scale=1">
-    <title>春节送福</title>
+    <title>国贸颂福贺新春</title>
     <script>
       (function () {
         if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
@@ -26,25 +26,37 @@
     <script src="http://static.gm-fitness.com/js/TweenMax.min.js"></script>
 </head>
 <body>
-<div class="bottom"></div>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<!--<div class="bottom"></div>-->
 <form id="formFile" enctype="multipart/form-data">
-    <input type="file" name="photo" id="fileUp" style="
+    <input type="file" name="photo" id="fileUp" accept="image/png, image/jpeg, image/jpg" style="
     height: 60px;
     width: 190px;
     position: absolute;
     z-index: 100;
-    top: 430px;
+    top: 400px;
     left: 40px;
     display: none;
     opacity:0;
     background: #ffffff;">
 </form>
 
-<img id="fini" style="display:none;width: 100%;bottom:0;height:400px;position: absolute;z-index: 100;"" />
+<img id="fini" style="display:none;width: 100%;height:370px;position: absolute;z-index: 100;top:470px;" />
 <img id="loading" src="http://static.gm-fitness.com/html5/time.gif"
      style="display:none;pointer-events:none;position: absolute;top:15%;left: 50%;z-index: 200;transform: translateX(-50%)">
 <audio id="music" src="http://static.gm-fitness.com/music/bless-music.mp3"></audio>
+<script src="http://static.gm-fitness.com/js/jweixin-1.0.0.js"></script>
 
+<script>
+  var _mtac = {};
+  (function () {
+    var mta = document.createElement('script');
+    mta.src = '//pingjs.qq.com/h5/stats.js?v2.0.4';
+    mta.setAttribute('name', 'MTAH5');
+    mta.setAttribute('sid', '500668788');
+
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(mta, s);
+  })();
+</script>
 </body>
 </html>

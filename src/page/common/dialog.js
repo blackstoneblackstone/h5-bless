@@ -33,7 +33,6 @@ export default {
       x: 0,
       y: 0,
       ease: Power1.easeOut,
-      delay: 0.5,
       onComplete: () => {
         loading = true;
         APP.stage.addChild(this.close);

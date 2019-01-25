@@ -1,16 +1,31 @@
-import { $container } from '../../utils/pixi';
+import { $animatedSprite, $container, $loadingImg, $loadingSprite } from '../../utils/pixi';
 import { Sprite } from '../../utils';
 import dialog from '../common/dialog';
 import circleNext from '../common/cricleNext';
 import waterAction from '../common/waterAction';
 import say from '../common/say';
 
+import p6_bg from '@static/p6/bg.jpg';
+import p6_bless from '@static/p6/bless.png';
+import p6_boy from '@static/p6/boy.png';
+import p6_desk from '@static/p6/desk.png';
+import p6_dog from '@static/p6/dog.png';
+import p6_fish from '@static/p6/fish.png';
+import p6_hand from '@static/p6/hand.png';
+import p6_hua from '@static/p6/hua.png';
+import p6_hua1 from '@static/p6/hua1.png';
+import p6_light from '@static/p6/light.png';
+import p6_mama from '@static/p6/mama.png';
+import p6_yeye from '@static/p6/yeye.png';
+import p6_pao from '@static/p6/pao.png';
+import p6_t1 from '@static/p6/t1.png';
+import p6_t2 from '@static/p6/t2.png';
+
 export default class P6 {
   constructor(res) {
     this.app = new $container();
     this.elements = {};
     this.res = res;
-    this.init();
   }
 
   init() {
@@ -21,37 +36,64 @@ export default class P6 {
   }
 
   initEl() {
-    const { p6_bg, p6_t1, p6_t2, p6_light, p6_mama, p6_pao } = this.res;
     this.elements = {
-      bg: Sprite(p6_bg),
-      t1: Sprite(p6_t1),
-      t2: Sprite(p6_t2),
-      light: Sprite(p6_light),
-      mama: Sprite(p6_mama),
-      pao: Sprite(p6_pao)
+      bg: $loadingSprite(p6_bg),
+      light: $loadingSprite(p6_light),
+      mama: $loadingSprite(p6_mama),
+      yeye: $loadingSprite(p6_yeye),
+      desk: $loadingSprite(p6_desk),
+      boy: $loadingSprite(p6_boy),
+      dog: $loadingSprite(p6_dog),
+      fish: $loadingSprite(p6_fish),
+      bless: $loadingSprite(p6_bless),
+      hand: $loadingSprite(p6_hand),
+      pao: $loadingSprite(p6_pao),
+      t1: $loadingSprite(p6_t1),
+      t2: $loadingSprite(p6_t2)
     };
-    const { bg, t1, t2, light, mama, pao } = this.elements;
+    const { bless, boy, desk, dog, fish, hand, hua, hua1, light, mama, yeye, pao, t1, t2 } = this.elements;
 
-    bg.x = 13;
-    bg.y = 112;
+    bless.x = 150;
+    bless.y = 121;
 
-    t1.x = 27;
-    t1.y = 17;
+    fish.x = 203;
+    fish.y = 470;
 
-    t2.x = 70;
-    t2.y = 60;
+    boy.x = -5;
+    boy.y = 626;
 
-    light.x = 24;
-    light.y = 103;
+    desk.anchor.set(0.5);
+    desk.x = 240;
+    desk.y = 690;
 
-    mama.x = 209;
-    mama.y = 467;
+    dog.x = 201;
+    dog.y = 767;
+
+    light.x = -5;
+    light.y = -9;
+
+    mama.x = 4;
+    mama.y = 287;
+
+    yeye.x = 208;
+    yeye.y = 317;
 
     pao.anchor.set(1, 1);
     pao.x = 190 + 156;
     pao.y = 410 + 111;
     pao.scale.x = 0;
     pao.scale.y = 0;
+
+    hand.anchor.set(0.1, 0.7);
+    hand.x = 305;
+    hand.y = 530;
+
+    t1.x = 80;
+    t1.y = 94;
+
+    t2.x = 118;
+    t2.y = 80;
+    this.app.scale.y = RADIO;
   }
 
   mount() {
@@ -64,23 +106,10 @@ export default class P6 {
     const self = this;
 
     return () => new Promise((r, j) => {
+      this.init();
       APP.stage.addChild(this.app);
       this.render();
-      const { t1, t2, mama, pao } = this.elements;
-      TweenMax.from(t1, 1, { alpha: 0, x: -300 });
-      TweenMax.from(t2, 1, { alpha: 0, x: 600, delay: 0.5 });
-      TweenMax.from(mama, 1, {
-        alpha: 0, x: 600, delay: 0.5, onComplete: () => {
-          TweenMax.to(pao.scale, 0.3, {
-            x: 1, y: 1, ease: Power1.easeOut, onComplete: () => {
-              TweenMax.from(pao, 0.8, {
-                alpha: 0.2, repeat: -1, yoyo: true
-              });
-            }
-          });
-        }
-      });
-
+      const { pao } = this.elements;
       pao.interactive = true;
       let flag = true;
       let time = undefined;
@@ -97,7 +126,7 @@ export default class P6 {
           }, 1500);
         }
       });
-      const con = circleNext(185, 220, this.app);
+      const con = circleNext(210, 190, this.app);
       con.interactive = true;
       con.on('tap', function () {
         self.next(r, this);
@@ -112,6 +141,40 @@ export default class P6 {
   }
 
   render() {
+    const { bless, boy, desk, dog, fish, hand, light, mama, yeye, pao, t1, t2 } = this.elements;
 
+    // const explosionTextures = [$loadingSprite(p6_hua), $loadingSprite(p6_hua1)];
+    // const con = new $animatedSprite(explosionTextures);
+    // con.x = 410;
+    // con.y = 20;
+    // con.animationSpeed = 300;
+    // con.play();
+    //
+    // this.app.addChild(con);
+
+    TweenMax.from(boy, 1, { alpha: 0, x: -300 });
+    TweenMax.from(dog, 1, { alpha: 0, x: 600, delay: 0.1 });
+    TweenMax.from(desk.scale, 0.5, { x: 0, y: 0, delay: 0.2 });
+    TweenMax.from(light, 1, { alpha: 0, x: 600, delay: 0.3 });
+    TweenMax.from(mama, 1, { alpha: 0, x: -600, delay: 0.4 });
+    TweenMax.from(yeye, 1, { alpha: 0, x: 600, delay: 0.5 });
+    TweenMax.from(bless, 1, { alpha: 0, x: -600, delay: 0.6 });
+    TweenMax.from(hand, 1, { alpha: 0, x: -600, delay: 0.7 });
+    TweenMax.from(t1, 1, { alpha: 0, x: -600, delay: 0.8 });
+    TweenMax.from(t2, 1, { alpha: 0, x: 600, delay: 0.9 });
+
+    TweenMax.to(hand, 1, { rotation: -0.5, delay: 1, repeat: -1, yoyo: true });
+
+    TweenMax.from(fish, 1, {
+      alpha: 0, x: 600, delay: 0.5, onComplete: () => {
+        TweenMax.to(pao.scale, 0.3, {
+          x: 1, y: 1, ease: Power1.easeOut, onComplete: () => {
+            TweenMax.from(pao, 0.8, {
+              alpha: 0.2, repeat: -1, yoyo: true
+            });
+          }
+        });
+      }
+    });
   }
 }

@@ -16,7 +16,7 @@ export default {
     //1.创建对象
     var xhr = new XMLHttpRequest();
     //2.设置请求行(get请求数据写在url后面)
-    xhr.open('get', `${url}index.php?g=Restful&m=Oauth&a=wechatJs&url=${window.location.href}`);
+    xhr.open('get', `${url}index.php?g=Restful&m=Oauth&a=wechatJs&url=${encodeURIComponent(window.location.href)}`);
     //3.设置请求头(get请求可以省略,post不发送数据也可以省略)
     xhr.onload = function () {
       r(xhr.responseText);

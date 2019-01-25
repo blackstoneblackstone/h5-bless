@@ -1,15 +1,16 @@
-import { $container } from '../../utils/pixi';
-import { Sprite } from '../../utils';
+import { $container, $loadingSprite } from '../../utils/pixi';
+import { address, Sprite } from '../../utils';
 import waterAction from '../common/waterAction';
 import circleNext from '../common/cricleNext';
 import say from '../common/say';
+import textmack from '@static/common/textmack.png';
+import dImg from '@static/p2/d.png';
 
 export default class P2 {
   constructor(res) {
     this.app = new $container();
     this.elements = {};
     this.res = res;
-    this.init();
   }
 
   init() {
@@ -32,21 +33,27 @@ export default class P2 {
       bg: Sprite(p2_bg),
       boy: Sprite(p2_boy),
       t1: Sprite(p2_t1),
-      t2: Sprite(p2_t2)
+      t2: Sprite(p2_t2),
+      tm: $loadingSprite(textmack)
     };
-    const { boy, bg, t1, t2 } = this.elements;
+    const { bg, boy, t1, t2, tm } = this.elements;
 
-    bg.y = 90;
-    bg.width = 480;
+    bg.scale.y = RADIO;
 
     boy.x = 186;
-    boy.y = 508;
+    boy.y = APP_HEIGHT - 360;
 
-    t1.x = 25;
-    t1.y = 20;
+    t1.x = 361;
+    t1.y = 178;
 
-    t2.x = 46;
-    t2.y = 63;
+    t2.x = 400;
+    t2.y = 211;
+
+    tm.x = 340;
+    tm.y = 130;
+    tm.width = 110;
+    tm.alpha = 0.4;
+    tm.height = 380;
 
   }
 
@@ -59,17 +66,21 @@ export default class P2 {
   action() {
     const self = this;
     return () => new Promise((r, j) => {
+      this.init();
       APP.stage.addChild(this.app);
       this.render();
-      const { t1, t2 } = this.elements;
+      const { t1, t2, tm, boy } = this.elements;
       TweenMax.from(t1, 1, { alpha: 0, y: -300 });
-      TweenMax.from(t2, 1, { alpha: 0, x: -300, delay: 0.5 });
-      const nextBtn = circleNext(270, 210, this.app);
+      TweenMax.from(t2, 1, { alpha: 0, x: 600, delay: 0.5 });
+      TweenMax.from(tm, 1, { alpha: 0, delay: 0.6 });
+      TweenMax.from(boy, 1, { alpha: 0, y: 1000, delay: 0.3 });
+
+      const nextBtn = circleNext(280, 130, this.app);
       nextBtn.interactive = true;
       nextBtn.on('tap', function () {
         self.next(r, this);
       });
-      say.play('p2')
+      say.play('p2');
     });
   }
 
@@ -79,8 +90,6 @@ export default class P2 {
   }
 
   render() {
-    APP.ticker.add(function (delta) {
-
-    });
+    address(dImg, this.app);
   }
 }

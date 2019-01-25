@@ -1,12 +1,13 @@
-import { $graphics } from '../../utils/pixi';
+import { $graphics, $loadingSprite } from '../../utils/pixi';
 import musicBtn from './musicBtn';
-import say from './say';
+import handImg from '@static/common/hand.png';
 
 export default function (x, y, app) {
 
   const g1 = new $graphics();
   const g2 = new $graphics();
   const g3 = new $graphics();
+  const hand = new $loadingSprite(handImg);
 
   g1.lineStyle(0);
   g1.beginFill(0xFFFFFF, 1);
@@ -37,13 +38,22 @@ export default function (x, y, app) {
   g2.position.y = y;
   g2.pivot.y = y;
 
+  hand.x = x + 16;
+  hand.y = y + 7;
+  hand.anchor.set(0.5);
+  hand.scale.x = 0;
+  hand.scale.y = 0;
+  hand.rotation = -0.8;
+
   musicBtn(app);
   app.addChild(g1);
   app.addChild(g2);
   app.addChild(g3);
+  app.addChild(hand);
 
   TweenMax.to(g1.scale, 0.5, {
     x: 1, y: 1, delay: 1, onComplete: () => {
+      TweenMax.to(hand.scale, 0.5, { x: 0.8, y: 0.8, repeat: -1, yoyo: true });
       TweenMax.to(g1.scale, 0.5, { x: 2, y: 2, repeat: -1, yoyo: true });
       TweenMax.to(g1, 0.5, { alpha: 0.5, repeat: -1, yoyo: true });
     }

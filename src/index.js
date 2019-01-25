@@ -33,7 +33,6 @@ APP.stop();
 
 const loading = new Loading();
 loading.start().then(loaded);
-APP.stage.y = (APP_HEIGHT - 854) / 2;
 
 if (screenHeight < 854) {
   const s = screenHeight / 854;
