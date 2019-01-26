@@ -77,17 +77,3 @@ npm run dev
 npm run build
 ```
 
-## 效果
-
-<img src="./doc/1.JPG" width="200px">
-<img src="./doc/2.JPG" width="200px">
-<img src="./doc/3.JPG" width="200px">
-<img src="./doc/4.JPG" width="200px">
-<img src="./doc/5.JPG" width="200px">
-<img src="./doc/6.JPG" width="200px">
-<img src="./doc/7.JPG" width="200px">
-<img src="./doc/8.JPG" width="200px">
-
-
-
-
