@@ -40,9 +40,16 @@ npm run dev
 npm run build
 ```
 
-## License
+## 效果
 
-[MIT](https://opensource.org/licenses/mit-license)
+![code](./doc/1.JPG)
+![code](./doc/2.JPG)
+![code](./doc/3.JPG)
+![code](./doc/4.JPG)
+![code](./doc/5.JPG)
+![code](./doc/6.JPG)
+![code](./doc/7.JPG)
+![code](./doc/8.JPG)
 
 
 
