@@ -7,4 +7,4 @@
 `CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build test.go`
 
 ## 效果
-![](./doc/h.jpg)
+![](../doc/h.jpg)
