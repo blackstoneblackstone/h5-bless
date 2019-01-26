@@ -1,12 +1,13 @@
-sint.js - examples
+# 基于Pixijs的营销h5
 =============
 
-## Learn
+## 扫码查看
+
+## 一个不错的游戏开发框架 sint.js
 
 - API [docs](https://watertian.github.io/sint.js/docs/).
 - [demo](https://watertian.github.io/sint-example/).
 
-# 教程
 
 ## 开发框架
 - [pixijs](https://pixijs.io/examples/#/basics/basic.js)
