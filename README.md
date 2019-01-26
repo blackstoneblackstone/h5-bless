@@ -3,6 +3,10 @@
 ## 扫码查看
 ![code](./doc/code.png)
 
+## 预览
+![code](./doc/bg.jpg)
+
+
 ## 推荐一个不错的游戏开发框架 sint.js
 
 - API [docs](https://watertian.github.io/sint.js/docs/).
