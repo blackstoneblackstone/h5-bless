@@ -1,5 +1,4 @@
 # 基于Pixijs的营销h5
-----
 
 ## 扫码查看
 ![code](./doc/code.png)
