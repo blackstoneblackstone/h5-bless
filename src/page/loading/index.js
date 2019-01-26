@@ -15,6 +15,9 @@ import p0_8 from '@static/p0/8.png';
 import p1_bg from '@static/p1/bg.jpg';
 import p1_glass from '@static/p1/glass.png';
 import p1_bless from '@static/p1/bless.png';
+import p1_women from '@static/p1/women.json';
+import '@static/p1/women.atlas';
+import '@static/p1/women.png';
 
 import p2_bg from '@static/p2/bg.jpg';
 import p2_bless from '@static/p2/bless.png';
@@ -75,6 +78,7 @@ export default class Loading {
         .add('p1_bg', p1_bg)
         .add('p1_glass', p1_glass)
         .add('p1_bless', p1_bless)
+        .add('p1_women', p1_women)
 
         .add('p2_bg', p2_bg)
         .add('p2_bless', p2_bless)

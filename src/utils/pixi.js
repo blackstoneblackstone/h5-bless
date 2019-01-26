@@ -1,3 +1,4 @@
+import 'pixi-spine';
 import 'pixi-particles';
 import 'pixi-sound';
 
@@ -9,6 +10,7 @@ const $resources = PIXI.loader.resources;
 const $textureCache = PIXI.utils.TextureCache;
 const $sprite = PIXI.Sprite;
 const $rectangle = PIXI.Rectangle;
+const $spine = PIXI.spine.Spine;
 const $displacementFilter = PIXI.filters.DisplacementFilter;
 const $loadingImg = PIXI.Texture.fromImage;
 const $particles = PIXI.particles;
@@ -24,6 +26,7 @@ export {
   $resources, $textureCache, $loaders,
   $sprite, $rectangle, $animatedSprite,
   $displacementFilter,
+  $spine,
   $loadingImg, $rope, $point, $graphics,
   $loadingSprite, $sound
 };
