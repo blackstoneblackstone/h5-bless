@@ -87,7 +87,6 @@ npm run build
 <img src="./doc/6.JPG" width="200px">
 <img src="./doc/7.JPG" width="200px">
 <img src="./doc/8.JPG" width="200px">
-<img src="./doc/9.JPG" width="200px">
 
 
 
