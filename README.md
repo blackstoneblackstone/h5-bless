@@ -7,7 +7,7 @@
 ![code](./doc/bg.jpg)
 
 ## 图片合成
-![](./doc/h.png)
+![](./doc/h.jpg)
 
 
 ## 目录结构
