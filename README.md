@@ -9,6 +9,7 @@
 
 ## 目录结构
 
+```tree
 ├── doc  // 文档
 ├── other // go文件
 ├── service // 后台源码
@@ -38,6 +39,7 @@
 │   ├── p6
 │   └── p7
 └── webpack // webpack配置
+```
 
 ## 推荐一个不错的游戏开发框架 sint.js
 
