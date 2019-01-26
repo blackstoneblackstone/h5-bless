@@ -7,6 +7,38 @@
 ![code](./doc/bg.jpg)
 
 
+## 目录结构
+
+├── doc  // 文档
+├── other // go文件
+├── service // 后台源码
+├── src // 前端源码
+│   ├── css
+│   ├── page
+│   │   ├── common
+│   │   ├── loading
+│   │   ├── p0
+│   │   ├── p1
+│   │   ├── p2
+│   │   ├── p3
+│   │   ├── p4
+│   │   ├── p5
+│   │   ├── p6
+│   │   └── p7
+│   └── utils
+├── static // 静态文件源码
+│   ├── common
+│   ├── music
+│   ├── p0
+│   ├── p1
+│   ├── p2
+│   ├── p3
+│   ├── p4
+│   ├── p5
+│   ├── p6
+│   └── p7
+└── webpack // webpack配置
+
 ## 推荐一个不错的游戏开发框架 sint.js
 
 - API [docs](https://watertian.github.io/sint.js/docs/).
