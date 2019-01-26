@@ -42,14 +42,16 @@ npm run build
 
 ## 效果
 
-![code](./doc/1.JPG)
-![code](./doc/2.JPG)
-![code](./doc/3.JPG)
-![code](./doc/4.JPG)
-![code](./doc/5.JPG)
-![code](./doc/6.JPG)
-![code](./doc/7.JPG)
-![code](./doc/8.JPG)
+<img src="./doc/1.JPG" width="200px">
+<img src="./doc/2.JPG" width="200px">
+<img src="./doc/3.JPG" width="200px">
+<img src="./doc/4.JPG" width="200px">
+<img src="./doc/5.JPG" width="200px">
+<img src="./doc/6.JPG" width="200px">
+<img src="./doc/7.JPG" width="200px">
+<img src="./doc/8.JPG" width="200px">
+<img src="./doc/9.JPG" width="200px">
+
 
 
 
